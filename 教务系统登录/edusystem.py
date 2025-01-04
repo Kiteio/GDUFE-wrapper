@@ -45,7 +45,7 @@ class EduSystem(SessionRouter):
     def __init__(self, username: int, password: str):
         """教务系统
 
-        接收 username（学号）和password（门户密码），并进行登录
+        接收 username（学号）和 password（门户密码），并进行登录
         """
         super().__init__("http://jwxt.gdufe.edu.cn")
 

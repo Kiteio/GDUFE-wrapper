@@ -1,6 +1,6 @@
 Set WshShell = CreateObject("WScript.Shell")
 
-result = WshShell.Run("ping www.bilibili.com", 0, True)
+result = WshShell.Run("ping -n 1 -w 1 example.com", 0, True)
 
 If result <> 0 Then
     name = "你的学号"

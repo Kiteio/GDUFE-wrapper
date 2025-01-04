@@ -1,5 +1,8 @@
 # 校园网开机自动登录（Windows）
 
+> **v2025.1.5**
+> - 提升网络状态检查速度
+
 **请勿轻信从别人那里得到的脚本**
 
 该脚本使用 VBScript 编写，利用其源代码`.vbs`文件能被 Windows 直接运行的特点（双击运行，并且不像`.cmd`有黑窗口），将其放置到`启动`目录中，开机时便会运行该脚本并登录校园网（前提是开机登录后已经连上校园网）。
@@ -8,7 +11,7 @@
 
 1. 参照[如何获取本机 IP](#如何获取本机-ip)，得到你的 Windows 的 ip 地址。
 
-2. 保存 [network.vbs](network.vbs)，使用记事本打开，将脚本中第六行开始的`你的学号`、`你的校园网密码`和`你的电脑ip`改为你自己的信息。
+2. 保存 [network.vbs](network.vbs)，使用记事本打开，将脚本中第6行开始的`你的学号`、`你的校园网密码`和`你的电脑ip`改为你自己的信息。
     ```vbscript
     Set WshShell = CreateObject("WScript.Shell")
 
@@ -35,19 +38,15 @@
 
 ## 调试
 
-如果你不清楚自己配置的信息是否正确，可以保存 [debug.cmd](debug.cmd)（请不要把它也放到`启动`里），将你在 [network.vbs](network.vbs) 中的配置填到其中（第六行开始），双击运行该脚本查看运行信息。
+如果你不清楚自己配置的信息是否正确，可以保存 [debug.cmd](debug.cmd)（请不要把它也放到`启动`里），将你在 [network.vbs](network.vbs) 中的配置填到其中（第3行开始），双击运行该脚本查看运行信息。
 
 ```cmd
 @echo off
-setlocal enabledelayedexpansion
-ping -n 1 www.bilibili.com >nul
 
-if errorlevel 1 (
-    set name=21251107799
-    set pwd=123456
-    set ip=192.168.1.1
-    curl "http://100.64.13.17:801/eportal/portal/login?callback=dr1003&login_method=1&user_account=%%2C0%%2C!name!&user_password=!pwd!&wlan_user_ip=!ip!&wlan_user_ipv6=&wlan_user_mac=000000000000&wlan_ac_ip=100.64.13.18&wlan_ac_name=&jsVersion=4.1.3&terminal_type=1&lang=zh-cn&v=5545&lang=zh"
-)
+set name=21251107799
+set pwd=123456
+set ip=192.168.1.1
+curl "http://100.64.13.17:801/eportal/portal/login?callback=dr1003&login_method=1&user_account=%%2C0%%2C!name!&user_password=!pwd!&wlan_user_ip=!ip!&wlan_user_ipv6=&wlan_user_mac=000000000000&wlan_ac_ip=100.64.13.18&wlan_ac_name=&jsVersion=4.1.3&terminal_type=1&lang=zh-cn&v=5545&lang=zh"
 
 pause
 
